@@ -1,0 +1,85 @@
+body {
+	background-color: #FFF3E0;
+	color: black;
+	font-family: sans-serif;
+}
+
+.post, .reply {
+	border: 1px solid black;
+	word-break: break-word;
+	max-width: 75%;
+	padding: 5px;
+  margin-bottom: 5px;
+}
+
+.post {
+	background-color: #FFE0B2;
+}
+
+.reply {
+	display: table;
+}
+
+blockquote {
+  color: #BF360C
+}
+
+.name {
+  color: #2E7D32;
+}
+
+.greentext{
+  color: #789922;
+}
+
+.subject {
+  color: #560086;
+}
+
+.arrowReply {
+	float: left;
+	display: block;
+}
+
+.title {
+  text-align: center; 
+  color: #DD2C00; 
+  letter-spacing: -2px;
+}
+
+.rules {
+  text-align: justify; 
+  max-width: 25em; 
+  margin: 0 auto;
+  padding: 0em 2em 0em 0em;
+}
+
+.navigation {
+  margin: 0.5em 1em 0.5em 0em;
+}
+
+.postThreadBox {
+  border: 1px solid black; 
+  display: table; 
+  margin: 0 auto; 
+  padding: 0em 2vh 0em 2vh;
+}
+
+.image {
+  margin: 0.5em;
+  border: 1px solid black;
+  display: table-cell;
+}
+
+div.image > img {
+  max-width: 30vw;
+  max-height: 25vw;
+}
+
+.replyThreadBox {
+  border: 1px solid black; 
+  display: table; 
+  padding-left: 2em; 
+  padding-right: 2em; 
+  padding-bottom: 1em;
+}

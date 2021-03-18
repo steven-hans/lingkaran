@@ -1,0 +1,23 @@
+<form class="postThreadBox" action="/create_thread" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <h4 style="text-align: center">Buat Thread Baru</h4>
+    <table>
+        <tr>
+            <td>{{ form.name.label }}</td>
+            <td>{{ form.name(size=36, maxlength=64, placeholder="Anonymous") }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.subject.label }}</td>
+            <td>{{ form.subject(size=26, maxlength=64, placeholder="(no subject title)") }}{{ form.submit }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.content.label }}</td>
+            <td>{{ form.content(rows=5, cols=30, maxlength=1536) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.media.label }}</td>
+            <td>{{ form.media(size=32) }}</td>
+        </tr>
+    </table>
+    <div style="margin: 0 auto; display: table;">{{ form.recaptcha }}</div>
+</form>

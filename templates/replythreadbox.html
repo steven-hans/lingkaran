@@ -1,0 +1,26 @@
+<form class="replyThreadBox" action="/post_reply/{{ tp.thread_post.id }}" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <table>
+        <h4>Reply to Thread</h4>
+        <tr>
+            <td>{{ form.name.label }}</td>
+            <td>{{ form.name(size=32, maxlength=64, placeholder="Anonymous") }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.content.label }}</td>
+            <td>{{ form.content(rows=5, cols=30, maxlength=1536) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.media.label }}</td>
+            <td>{{ form.media(size=32) }}</td>
+        </tr>
+        <tr>
+            <td>Verifikasi</td>
+            <td>{{ form.recaptcha }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{ form.submit }}</td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+{% include 'headtag.html' %}
+
+<body>
+    <hr> 
+    {% include 'header.html' %}
+    {% include 'showerrorifnotnone.html' %}
+    {% include 'postthreadbox.html' %}
+    <hr>
+    
+    {% for tp in thread_posts %}
+        {% include 'showtp.html' %}
+    {% endfor %}
+</body>
+
+</html>

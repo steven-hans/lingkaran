@@ -1,0 +1,66 @@
+<div class="post">
+    {% if tp.thread_post.subject != '' %}
+    <b class="subject">{{ tp.thread_post.subject }} - </b> {% endif %} {% if tp.thread_post.name != None %}
+    <b class="name">{{ tp.thread_post.name }}</b> {% else %}
+    <b class="name">Anonymous</b> {% endif %} ({{ tp.thread_post.displayed_date }}) <span id="post{{ tp.thread_post.id }}">No.{{ tp.thread_post.id }}</span>
+    {% if reply_count is defined %}
+        {% if reply_count <=1 %} [{{ reply_count }} reply] {% else %} [{{ reply_count }} replies] {% endif %}
+    {% else %}
+        [<a href="/view/{{ tp.thread_post.id }}">expand</a>]
+    {% endif %}
+    {% if adm %}
+        [<a href="/remove_thread/{{ tp.thread_post.id }}">delete</a>]
+        [<a href="/ban_ip_from/{{ tp.thread_post.id }}">ban</a>]
+    {% endif %}
+    <blockquote>
+        {% if tp.thread_post.media_link is defined and tp.thread_post.media_link != None %}
+            <div class="image">
+                <img src="https://kelambu18.s3-ap-southeast-1.amazonaws.com/{{ tp.thread_post.media_link }}">
+            </div>
+        {% endif %}
+        {% for c in tp.thread_post.displayed_content %}
+            {% if c[:2] == '>>' %}
+                <div class="reflink">{{ c }}</div>
+            {% elif c[0] == '>' %}
+                <div class="greentext">{{ c }}</div>
+            {% else %}
+                {{ c }} <br>
+            {% endif %}
+        {% endfor %}
+    </blockquote>
+</div>
+
+{% for p in tp.posts %}
+<div class="arrowReply">&gt;&gt;</div>
+<div class="reply">
+    {% if p.name != None %}
+    <b class="name">{{ p.name }}</b> {% else %}
+    <b class="name">Anonymous</b> {% endif %} ({{ p.displayed_date }}) <span id="post{{ p.id }}">No.{{ p.id }}</span>
+    {% if adm %}
+        [<a href="/remove_post/{{ p.id }}/{{ tp.thread_post.id }}">delete</a>]
+        [<a href="/ban_ip_from/{{ p.id }}">ban</a>]
+    {% endif %}
+    <blockquote>
+        {% if p.media_link is defined and p.media_link != '' %}
+            <div class="image">
+                <img src="https://kelambu18.s3-ap-southeast-1.amazonaws.com/{{ p.media_link }}">
+            </div>
+        {% endif %}
+        {% for c in p.displayed_content %}
+            {% if c[:2] == '>>' %}
+                {% for chunk in c | format_post_reference %}
+                    {% if chunk[0] != None %}
+                        <a href="#post{{ chunk[0] }}">>>{{ chunk[0] }}</a>
+                    {% endif %}
+                    {{ chunk[1] }}
+                {% endfor %}
+            {% elif c[0] == '>' %}
+                <div class="greentext">{{ c }}</div>
+            {% else %}
+                {{ c }} <br>
+            {% endif %}
+        {% endfor %}
+    </blockquote>
+</div>
+{% endfor %}
+<hr style="color: #FFF3E0">
